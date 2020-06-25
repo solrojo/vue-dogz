@@ -1,18 +1,28 @@
 <template>
   <div>
     <breed-selector />
-    <banner-box />
-    <breeds-tiles />
+    <breeds-tiles :data="randomImages" withBanner />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'HomeView',
   components: {
     BreedSelector: () => import('@/components/BreedSelector.vue'),
-    BannerBox: () => import('@/components/BannerBox.vue'),
     BreedsTiles: () => import('@/components/BreedsTiles/')
+  },
+  computed: {
+    ...mapState({
+      randomImages: state => state.randomImages
+    })
+  },
+  created () {
+    if (!this.randomImages.length) {
+      this.$store.dispatch('getRandomImages')
+    }
   }
 }
 </script>

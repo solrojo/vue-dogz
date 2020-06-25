@@ -1,16 +1,21 @@
 <template>
   <div>
-    <breed-selector />
-    <breeds-tiles />
+    <breeds-tiles :data="favorites" />
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
   name: 'FavoritesView',
   components: {
-    BreedSelector: () => import('@/components/BreedSelector.vue'),
     BreedsTiles: () => import('@/components/BreedsTiles/')
+  },
+  computed: {
+    ...mapState({
+      favorites: state => state.favorites
+    })
   }
 }
 </script>
