@@ -15,7 +15,11 @@
           <span class="selector__option-reset"><close /></span>
         </router-link>
       </div>
-      <div class="selector-sort-toggle" @click.stop="toggleSort">
+      <div
+        v-if="showSort"
+        class="selector-sort-toggle"
+        @click.stop="toggleSort"
+      >
         Сортировка по алфавиту
         <span class="selector-sort-toggle__icon"><toggle /></span>
       </div>
@@ -66,6 +70,11 @@ export default {
       type: String,
       required: false,
       default: ''
+    },
+    showSort: {
+      type: Boolean,
+      required: false,
+      default: true
     }
   },
   components: {
@@ -97,6 +106,7 @@ export default {
       this.isOptionsOpen = !this.isOptionsOpen
     },
     toggleSort () {
+      this.$emit('toggleSort')
     }
   }
 }

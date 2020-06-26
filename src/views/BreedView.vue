@@ -1,7 +1,11 @@
 <template>
   <div>
-    <breed-selector :selected="breedName" />
-    <breeds-tiles :data="data" :showLoader="loading" />
+    <breed-selector
+      :selected="breedName"
+      :show-sort="false"
+      @toggleSort="toggleSortData"
+    />
+    <breeds-tiles :data="data" :show-loader="loading" />
   </div>
 </template>
 
@@ -9,7 +13,11 @@
 import { createNamespacedHelpers } from 'vuex'
 import breedList from '@/store/modules/breedList'
 
-const { mapState, mapActions } = createNamespacedHelpers('breedList')
+const {
+  mapState,
+  mapActions,
+  mapMutations
+} = createNamespacedHelpers('breedList')
 const BreedSelector = () => import('@/components/BreedSelector.vue')
 const BreedsTiles = () => import('@/components/BreedsTiles/')
 
@@ -54,6 +62,7 @@ export default {
   },
   methods: {
     ...mapActions(['getData']),
+    ...mapMutations(['toggleSortData']),
     loadData () {
       this.getData(this.breedName)
     }

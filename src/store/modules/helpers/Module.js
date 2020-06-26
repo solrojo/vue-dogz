@@ -7,12 +7,15 @@ export default class Module {
     this.state = {
       loading: false,
       url: props.url,
+      prevData: null,
+      sorted: false,
       data: []
     }
 
     this.mutations = {
       setData: this.mutationSetData.bind(this),
-      setLoading: this.mutationSetLoading.bind(this)
+      setLoading: this.mutationSetLoading.bind(this),
+      toggleSortData: this.mutationToggleSortData.bind(this)
     }
 
     this.actions = {
@@ -26,6 +29,21 @@ export default class Module {
 
   mutationSetLoading (state, payload) {
     state.loading = payload
+  }
+
+  mutationToggleSortData (state) {
+    try {
+      if (state.sorted) {
+        state.data = JSON.parse(state.prevData)
+        state.sorted = false
+      } else {
+        state.prevData = JSON.stringify(state.data)
+        state.data.sort((a, b) => a.url.localeCompare(b.url))
+        state.sorted = true
+      }
+    } catch (err) {
+      console.warn(err)
+    }
   }
 
   async actionGetData ({ commit, state }) {
