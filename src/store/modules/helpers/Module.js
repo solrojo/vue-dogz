@@ -21,10 +21,7 @@ export default class Module {
   }
 
   mutationSetData (state, payload) {
-    state.data = [
-      ...state.data,
-      ...payload
-    ]
+    state.data.push(...payload)
   }
 
   mutationSetLoading (state, payload) {

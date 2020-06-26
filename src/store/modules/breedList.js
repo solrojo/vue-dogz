@@ -14,7 +14,7 @@ class BreedList extends Module {
   }
 
   async actionGetData (context, name) {
-    context.commit('setUrl', `/breed/${name}/images/random/20`)
+    context.commit('setUrl', `/breed/${name}/images/random/20/alt`)
     await super.actionGetData(context)
   }
 }

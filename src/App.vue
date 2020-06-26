@@ -21,13 +21,34 @@ export default {
   },
   methods: {
     onScroll () {
-      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        this.$store.commit('setScrollAtBottom', true)
+      const limit = window.innerHeight + window.scrollY + 100
+      if (limit < document.body.offsetHeight) {
+        return
       }
+      this.$store.commit('setScrollAtBottom', true)
     }
   }
 }
 </script>
 
 <style lang="scss">
+* {
+  font-size: 100%;
+  font: inherit;
+}
+html, body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(180deg, #1B1A1F 0%, #111013 99.09%);
+  font-family: IBM Plex Sans, sans-serif;
+  color: #FFFFFF;
+  min-height: 100vh;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
 </style>

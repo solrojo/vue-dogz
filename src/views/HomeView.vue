@@ -1,7 +1,7 @@
 <template>
   <div>
     <breed-selector />
-    <breeds-tiles :data="data" with-banner />
+    <breeds-tiles :data="data" with-banner :showLoader="loading" />
   </div>
 </template>
 
@@ -20,7 +20,8 @@ export default {
   },
   computed: {
     ...mapState({
-      data: state => state.data
+      data: state => state.data,
+      loading: state => state.loading
     })
   },
   watch: {

@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <breeds-tiles :data="data" @toggleLike="getData" />
-  </div>
+  <breeds-tiles :data="data" all-items-liked @toggleLike="getData" />
 </template>
 
 <script>
