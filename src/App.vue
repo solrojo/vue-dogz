@@ -14,7 +14,17 @@ export default {
     BaseHeader
   },
   created () {
-    this.$store.dispatch('getBreedsList')
+    window.addEventListener('scroll', this.onScroll)
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.onScroll)
+  },
+  methods: {
+    onScroll () {
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        this.$store.commit('setScrollAtBottom', true)
+      }
+    }
   }
 }
 </script>

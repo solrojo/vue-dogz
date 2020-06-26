@@ -1,29 +1,50 @@
 <template>
   <div>
-    <breeds-tiles :data="breedImages" />
+    <breeds-tiles :data="data" />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { createNamespacedHelpers } from 'vuex'
+import breedList from '@/store/modules/breedList'
+
+const { mapState, mapActions } = createNamespacedHelpers('breedList')
+const BreedsTiles = () => import('@/components/BreedsTiles/')
 
 export default {
   name: 'BreedView',
   components: {
-    BreedsTiles: () => import('@/components/BreedsTiles/')
+    BreedsTiles
   },
   computed: {
     ...mapState({
-      breedsList: state => state.breedsList,
-      breedImages: state => state.breedImages
-    }),
-    breedName () {
-      return this.$route.params.name
+      data: state => state.data
+    })
+  },
+  watch: {
+    '$store.state.scrollAtBottom': {
+      handler (val) {
+        if (!val) {
+          return
+        }
+        this.loadData()
+        this.$store.commit('setScrollAtBottom', false)
+      }
     }
   },
   created () {
-    if (!this.breedImages.length) {
-      this.$store.dispatch('getBreedImages', this.breedName)
+    if (!this.$store.hasModule('breedList')) {
+      this.$store.registerModule('breedList', breedList)
+    }
+
+    if (!this.data.length) {
+      this.loadData()
+    }
+  },
+  methods: {
+    ...mapActions(['getData']),
+    loadData () {
+      this.getData(this.$route.params.name)
     }
   }
 }

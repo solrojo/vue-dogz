@@ -1,19 +1,16 @@
 <template>
-  <div>
+  <div @click="onClick">
+    isLiked {{ isLiked }}
     <img
       :src="src"
-      alt=""
       :width="fullWith ? '100%' : 100"
       :height="fullWith ? 'auto': 100"
       loading="lazy"
-      @click="toggleLike"
     />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   name: 'BreedsTilesItem',
   props: {
@@ -28,25 +25,18 @@ export default {
       default: false
     }
   },
-  computed: {
-    ...mapState({
-      favorites: state => state.favorites
-    })
+  data () {
+    return {
+      isLiked: false
+    }
   },
   methods: {
-    addToFavorites () {
-      this.$store.commit('addToFavorites', this.src)
-    },
-    removeFromFavorites () {
-      this.$store.commit('removeFromFavorites', this.src)
-    },
-    toggleLike () {
-      const inFavorites = !!(this.favorites.find(el => el === this.src))
-      if (!inFavorites) {
-        this.addToFavorites()
-      } else {
-        this.removeFromFavorites()
-      }
+    onClick () {
+      this.isLiked = !this.isLiked
+      this.$emit('toggleLike', {
+        liked: this.isLiked,
+        source: this.src
+      })
     }
   }
 }

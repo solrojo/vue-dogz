@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span v-for="(breeds, letter) in breedsList" :key="letter">
+    <span v-for="(breeds, letter) in data" :key="letter">
       <span>
         <span>{{ letter }}</span>
         <router-link
@@ -16,16 +16,24 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { createNamespacedHelpers } from 'vuex'
+
+const { mapState, mapActions } = createNamespacedHelpers('breedSelector')
 
 export default {
   name: 'BreedSelector',
   computed: {
     ...mapState({
-      breedsList: state => state.breedsList
+      data: state => state.data
     })
   },
+  created () {
+    if (!this.data.length) {
+      this.getData()
+    }
+  },
   methods: {
+    ...mapActions(['getData']),
     getBreedUrl (breed) {
       return `/breed/${breed}`
     }

@@ -1,28 +1,46 @@
 <template>
   <div>
     <breed-selector />
-    <breeds-tiles :data="randomImages" withBanner />
+    <breeds-tiles :data="data" with-banner />
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { createNamespacedHelpers } from 'vuex'
+
+const { mapState, mapActions } = createNamespacedHelpers('breedsRandom')
+const BreedSelector = () => import('@/components/BreedSelector.vue')
+const BreedsTiles = () => import('@/components/BreedsTiles/')
 
 export default {
   name: 'HomeView',
   components: {
-    BreedSelector: () => import('@/components/BreedSelector.vue'),
-    BreedsTiles: () => import('@/components/BreedsTiles/')
+    BreedSelector,
+    BreedsTiles
   },
   computed: {
     ...mapState({
-      randomImages: state => state.randomImages
+      data: state => state.data
     })
   },
-  created () {
-    if (!this.randomImages.length) {
-      this.$store.dispatch('getRandomImages')
+  watch: {
+    '$store.state.scrollAtBottom': {
+      handler (val) {
+        if (!val) {
+          return
+        }
+        this.getData()
+        this.$store.commit('setScrollAtBottom', false)
+      }
     }
+  },
+  created () {
+    if (!this.data.length) {
+      this.getData()
+    }
+  },
+  methods: {
+    ...mapActions(['getData'])
   }
 }
 </script>

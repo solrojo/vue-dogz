@@ -15,17 +15,28 @@ const routes = [
   {
     path: '/',
     name: 'HomeView',
-    component: HomeView
-  },
-  {
-    path: '/favorites',
-    name: 'FavoritesView',
-    component: () => import('@/views/FavoritesView.vue')
+    component: HomeView,
+    meta: {
+      action: 'getRandomImages',
+      listKey: 'randomImages'
+    }
   },
   {
     path: '/breed/:name',
     name: 'BreedView',
-    component: () => import('@/views/BreedView.vue')
+    component: () => import('@/views/BreedView.vue'),
+    meta: {
+      action: 'getBreedImages',
+      listKey: 'breedImages'
+    }
+  },
+  {
+    path: '/favorites',
+    name: 'FavoritesView',
+    component: () => import('@/views/FavoritesView.vue'),
+    meta: {
+      listKey: 'favorites'
+    }
   }
 ]
 
