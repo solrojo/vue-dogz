@@ -119,7 +119,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .selector {
   padding: 5vh 6vw;
   box-sizing: border-box;
