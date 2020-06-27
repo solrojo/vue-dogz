@@ -13,7 +13,11 @@
         <router-link
           to="/"
           v-if="selected"
-          class="selector__option selector__option--active selector__option--capitalize"
+          class="
+            selector__option
+            selector__option--active
+            selector__option--capitalize
+          "
         >
           {{ selected }}
           <span class="selector__option-reset"><close /></span>
