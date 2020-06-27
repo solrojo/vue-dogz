@@ -1,10 +1,9 @@
 <template>
   <div>
-    <div class="tiles">
+    <div class="tiles" :class="{'tiles--with-banner': withBanner}">
       <tile-item
         v-for="(item, index) in data" :key="getKey(index)"
         :item="item"
-        :full-with="withBanner && index === 0"
         :default-liked="allItemsLiked"
         @toggleLike="onToggleLike"
       />
@@ -94,6 +93,10 @@ export default {
   row-gap: 3vh;
   padding: 0 6vw 20vh 6vw;
   color: #FFFFFF;
+
+  &--with-banner :first-child {
+    grid-column: 1 / -1;
+  }
 }
 
 .tiles-loader {

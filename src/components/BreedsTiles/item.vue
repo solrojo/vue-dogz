@@ -24,11 +24,6 @@ export default {
         return {}
       }
     },
-    fullWith: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
     defaultLiked: {
       type: Boolean,
       required: false,
