@@ -157,7 +157,7 @@ export default {
     padding-top: 30px;
 
     &__category {
-      display: inline-block;
+      display: inline;
       box-sizing: border-box;
     }
 
@@ -168,8 +168,8 @@ export default {
       line-height: 28px;
       letter-spacing: 0.01em;
       color: #626262;
-      padding-right: 15px;
       text-transform: uppercase;
+      padding-right: 15px;
     }
   }
 
@@ -194,6 +194,10 @@ export default {
 
     &--capitalize {
       text-transform: capitalize;
+    }
+
+    &:last-child {
+      margin-right: 40px;
     }
   }
 
