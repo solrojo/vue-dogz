@@ -2,7 +2,11 @@
   <div class="selector">
     <div class="selector-menu">
       <div>
-        <div class="selector-dropdown" @click.stop="toggleOptions">
+        <div
+          class="selector-dropdown"
+          :class="{'selector-dropdown--active': isOptionsOpen}"
+          @click.stop="toggleOptions"
+        >
           Породы
           <span class="selector-dropdown__icon"><caret /></span>
         </div>
@@ -18,6 +22,7 @@
       <div
         v-if="showSort"
         class="selector-sort-toggle"
+        :class="{'selector-sort-toggle--active': isSorted}"
         @click.stop="toggleSort"
       >
         Сортировка по алфавиту
@@ -57,9 +62,9 @@
 
 <script>
 import { createNamespacedHelpers } from 'vuex'
-import toggle from '@/assets/toggle.svg'
-import caret from '@/assets/caret.svg'
-import close from '@/assets/close.svg'
+import toggle from '@/assets/svg/toggle.svg'
+import caret from '@/assets/svg/caret.svg'
+import close from '@/assets/svg/close.svg'
 
 const { mapState, mapActions } = createNamespacedHelpers('breedSelector')
 
@@ -84,7 +89,8 @@ export default {
   },
   data () {
     return {
-      isOptionsOpen: false
+      isOptionsOpen: false,
+      isSorted: false
     }
   },
   computed: {
@@ -106,6 +112,7 @@ export default {
       this.isOptionsOpen = !this.isOptionsOpen
     },
     toggleSort () {
+      this.isSorted = !this.isSorted
       this.$emit('toggleSort')
     }
   }
@@ -127,8 +134,8 @@ export default {
   &-dropdown {
     display: inline-flex;
     box-sizing: border-box;
-    color: #fff;
-    border-bottom: 1px dashed #fff;
+    color: #626262;
+    border-bottom: 1px dashed #626262;
     padding-bottom: 2px;
     cursor: pointer;
     margin-right: 20px;
@@ -136,6 +143,19 @@ export default {
     &__icon {
       margin: -2px 0 0 10px;
       box-sizing: border-box;
+    }
+
+    &--active {
+      color: #fff;
+      border-color: #fff;
+    }
+
+    &--active &__icon {
+      transform: scale(1, -1);
+
+      & .caret {
+        fill: #fff;
+      }
     }
   }
 
@@ -149,6 +169,22 @@ export default {
     &__icon {
       margin-left: 15px;
       box-sizing: border-box;
+    }
+
+    &--active {
+      color: #fff;
+    }
+
+    &--active &__icon {
+      transform: scale(-1, 1);
+
+      & .toggle-rect {
+        stroke: #fff;
+      }
+
+      & .toggle-pin {
+        fill: #fff;
+      }
     }
   }
 

@@ -19,7 +19,7 @@
 <script>
 import TileItem from './item.vue'
 import storage from '@/helpers/storage'
-import loader from '@/assets/loader.svg'
+import loader from '@/assets/svg/loader.svg'
 
 export default {
   name: 'BreedsTiles',

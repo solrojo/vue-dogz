@@ -6,8 +6,8 @@
 </template>
 
 <script>
-import liked from '@/assets/liked.svg'
-import unliked from '@/assets/unliked.svg'
+import liked from '@/assets/svg/liked.svg'
+import unliked from '@/assets/svg/unliked.svg'
 
 export default {
   name: 'BreedsTilesLike',

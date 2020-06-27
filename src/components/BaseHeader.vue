@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import logo from '@/assets/logo.svg'
-import unliked from '@/assets/unliked.svg'
+import logo from '@/assets/svg/logo.svg'
+import unliked from '@/assets/svg/unliked.svg'
 
 export default {
   name: 'BaseHeader',
