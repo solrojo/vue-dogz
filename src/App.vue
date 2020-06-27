@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <main class="container">
     <base-header />
     <router-view/>
-  </div>
+  </main>
 </template>
 
 <script>
@@ -50,5 +50,10 @@ html, body {
 }
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
 }
 </style>

@@ -25,6 +25,9 @@ export default class Module {
 
   mutationSetData (state, payload) {
     state.data.push(...payload)
+    if (state.sorted) {
+      state.data.sort((a, b) => a.altText.localeCompare(b.altText))
+    }
   }
 
   mutationSetLoading (state, payload) {
@@ -38,7 +41,7 @@ export default class Module {
         state.sorted = false
       } else {
         state.prevData = JSON.stringify(state.data)
-        state.data.sort((a, b) => a.url.localeCompare(b.url))
+        state.data.sort((a, b) => a.altText.localeCompare(b.altText))
         state.sorted = true
       }
     } catch (err) {

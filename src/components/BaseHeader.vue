@@ -1,10 +1,14 @@
 <template>
   <nav class="nav">
-    <router-link class="nav__header" to="/">
+    <router-link class="nav-header" to="/">
       <logo />
     </router-link>
-    <router-link class="nav__link" to="/favorites">
-      Избранные пёсели <span class="nav__link-icon"><unliked /></span>
+    <router-link
+      to="/favorites"
+      class="nav-link"
+      active-class="nav-link--active"
+    >
+      Избранные пёсели <span class="nav-link__icon"><unliked /></span>
     </router-link>
   </nav>
 </template>
@@ -36,24 +40,34 @@ export default {
   display: flex;
   justify-content: space-between;
 
-  &__header {
+  &-header {
     align-self: flex-start;
   }
 
-  &__link {
+  &-link {
     color: #626262;
     text-decoration: none;
     align-self: flex-end;
     display: inline-flex;
-  }
 
-  &__link-icon {
-    width: 16px;
-    height: 14px;
-    margin: 2px 0 0 10px;
+    &__icon {
+      width: 16px;
+      height: 14px;
+      margin: 2px 0 0 10px;
 
-    & .unliked {
-      fill: #626262;
+      & .unliked {
+        fill: #626262;
+      }
+    }
+
+    &--active {
+      color: #fff;
+    }
+
+    &--active &__icon {
+      & .unliked {
+        fill: #fff;
+      }
     }
   }
 }
