@@ -82,11 +82,16 @@ export default {
   display: flex;
   justify-content: space-between;
   cursor: pointer;
+  height: 290px;
+  height: calc(100vh / 3);
 
   &--banner {
     grid-column: 1 / -1;
     padding: 35px 50px 50px 35px;
     background-position: center center;
+    font-size: 30px;
+    height: 513px;
+    height: calc(100vw / 2);
   }
 
   &:before {
@@ -113,13 +118,21 @@ export default {
   }
 }
 
-@media (min-width: 1080px) {
+@media (max-width:1080px) {
   .tile {
-    height: 290px;
+    height: calc(100vh / 2);
 
     &--banner {
-      height: 513px;
+      height: calc(100vh / 2);
     }
   }
 }
+
+@media (max-width: 800px) {
+  .tile--banner {
+    padding: 25px;
+    font-size: 25px;
+  }
+}
+
 </style>

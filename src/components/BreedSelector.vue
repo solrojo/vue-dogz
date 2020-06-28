@@ -227,6 +227,7 @@ export default {
     align-items: center;
     user-select: none;
     word-break: break-word;
+    font-size: 12px;
 
     &:hover,
     &--active {

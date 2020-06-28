@@ -32,17 +32,16 @@ export default {
 </script>
 
 <style lang="scss">
-* {
-  font-size: 100%;
-  font: inherit;
-}
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap');
+
 html, body {
   margin: 0;
   padding: 0;
   background: linear-gradient(180deg, #1B1A1F 0%, #111013 99.09%);
-  font-family: IBM Plex Sans, sans-serif;
+  font-family: "IBM Plex Sans", sans-serif;
   color: #FFFFFF;
   min-height: 100vh;
+  font-size: 16px;
 }
 
 .fade-enter-active, .fade-leave-active {
@@ -54,6 +53,7 @@ html, body {
 
 .container {
   max-width: 1280px;
+  min-width: 300px;
   margin: 0 auto;
 }
 </style>

@@ -105,4 +105,20 @@ export default {
   right: 0;
   z-index: 100;
 }
+
+@media (max-width:1080px) {
+  .tiles {
+    grid-template-columns: repeat(2, 1fr);
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 800px) {
+  .tiles {
+    grid-template-columns: 1fr;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
 </style>
