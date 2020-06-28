@@ -1,6 +1,7 @@
 <template>
   <div
     class="tile"
+    :class="{'tile--banner': isBanner}"
     @click.stop="onClick"
     :style="style"
   >
@@ -25,6 +26,11 @@ export default {
       }
     },
     defaultLiked: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    isBanner: {
       type: Boolean,
       required: false,
       default: false
@@ -77,6 +83,12 @@ export default {
   justify-content: space-between;
   cursor: pointer;
 
+  &--banner {
+    grid-column: 1 / -1;
+    padding: 35px 50px 50px 35px;
+    background-position: center center;
+  }
+
   &:before {
     content: ' ';
     position: absolute;
@@ -97,14 +109,17 @@ export default {
     align-self: flex-end;
     z-index: 1;
     text-align: right;
+    word-break: break-word;
   }
 }
 
 @media (min-width: 1080px) {
   .tile {
-    // 12vw it's left and right tiles block paddings
-    // 6vw t's tiles block column-gaps
-    height: calc((100vw - 12vw - 6vw) / 3);
+    height: 290px;
+
+    &--banner {
+      height: 513px;
+    }
   }
 }
 </style>

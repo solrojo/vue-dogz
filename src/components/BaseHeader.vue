@@ -36,9 +36,11 @@ export default {
   font-size: 16px;
   line-height: 28px;
   letter-spacing: 0.01em;
-  padding: 35px 6vw;
+  padding: 35px 60px;
   display: flex;
   justify-content: space-between;
+  box-sizing: border-box;
+  align-items: center;
 
   &-header {
     align-self: flex-start;
@@ -47,7 +49,6 @@ export default {
   &-link {
     color: #626262;
     text-decoration: none;
-    align-self: flex-end;
     display: inline-flex;
 
     &__icon {

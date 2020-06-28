@@ -1,5 +1,7 @@
 <template>
-  <breeds-tiles :data="data" all-items-liked @toggleLike="getData" />
+  <div class="favorites">
+    <breeds-tiles :data="data" all-items-liked @toggleLike="getData" />
+  </div>
 </template>
 
 <script>
@@ -30,3 +32,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.favorites {
+  padding-top: 122px;
+}
+</style>

@@ -1,9 +1,10 @@
 <template>
   <div>
-    <div class="tiles" :class="{'tiles--with-banner': withBanner}">
+    <div class="tiles">
       <tile-item
         v-for="(item, index) in data" :key="getKey(index)"
         :item="item"
+        :isBanner="withBanner && index === 0"
         :default-liked="allItemsLiked"
         @toggleLike="onToggleLike"
       />
@@ -89,18 +90,14 @@ export default {
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 3vw;
-  row-gap: 3vh;
-  padding: 0 6vw 20vh 6vw;
+  column-gap: 30px;
+  row-gap: 30px;
+  padding: 0 60px 200px 60px;
   color: #FFFFFF;
-
-  &--with-banner :first-child {
-    grid-column: 1 / -1;
-  }
 }
 
 .tiles-loader {
-  padding: 8vh;
+  padding: 80px;
   text-align: center;
   position: fixed;
   bottom: 0;

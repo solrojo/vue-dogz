@@ -125,7 +125,7 @@ export default {
 
 <style lang="scss" scoped>
 .selector {
-  padding: 5vh 6vw;
+  padding: 50px 60px 33px 60px;
   box-sizing: border-box;
 
   &-menu {
@@ -203,6 +203,7 @@ export default {
 
     &__category-name {
       display: inline-block;
+      vertical-align: middle;
       box-sizing: border-box;
       font-size: 20px;
       line-height: 28px;
@@ -225,6 +226,7 @@ export default {
     cursor: pointer;
     align-items: center;
     user-select: none;
+    word-break: break-word;
 
     &:hover,
     &--active {
