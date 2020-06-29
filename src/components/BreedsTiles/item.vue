@@ -89,7 +89,7 @@ export default {
   &--banner {
     grid-column: 1 / -1;
     padding: 35px 50px 50px 35px;
-    background-position: center center;
+    background-position: 0% 0%;
     font-size: 30px;
     height: 520px;
     height: calc(100vw / 2);
