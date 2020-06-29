@@ -14,6 +14,7 @@ export default class Module {
 
     this.mutations = {
       setData: this.mutationSetData.bind(this),
+      clearData: this.mutationClearData.bind(this),
       setLoading: this.mutationSetLoading.bind(this),
       toggleSortData: this.mutationToggleSortData.bind(this)
     }
@@ -28,6 +29,10 @@ export default class Module {
     if (state.sorted) {
       state.data.sort((a, b) => a.altText.localeCompare(b.altText))
     }
+  }
+
+  mutationClearData (state, payload) {
+    state.data = []
   }
 
   mutationSetLoading (state, payload) {

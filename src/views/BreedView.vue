@@ -1,10 +1,6 @@
 <template>
   <div>
-    <breed-selector
-      :selected="breedName"
-      :show-sort="false"
-      @toggleSort="toggleSortData"
-    />
+    <breed-selector :selected="breedName" :show-sort="false" />
     <breeds-tiles :data="data" :show-loader="loading" />
   </div>
 </template>
@@ -45,26 +41,32 @@ export default {
         this.loadData()
         this.$store.commit('setScrollAtBottom', false)
       }
-    }
+    },
+    $route: 'reload'
   },
   created () {
     if (!this.$store.hasModule('breedList')) {
       this.$store.registerModule('breedList', breedList)
     }
 
-    if (!this.data.length) {
-      this.loadData()
-    }
+    this.loadData()
 
     if (window.scrollY) {
       window.scrollTo(0, 0)
     }
   },
+  beforeDestroy () {
+    this.clearData()
+  },
   methods: {
+    ...mapMutations(['clearData']),
     ...mapActions(['getData']),
-    ...mapMutations(['toggleSortData']),
     loadData () {
       this.getData(this.breedName)
+    },
+    reload () {
+      this.clearData()
+      this.loadData()
     }
   }
 }

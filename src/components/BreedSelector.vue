@@ -103,7 +103,7 @@ export default {
     })
   },
   created () {
-    if (!this.data.length) {
+    if (!Object.keys(this.data).length) {
       this.getData()
     }
   },
