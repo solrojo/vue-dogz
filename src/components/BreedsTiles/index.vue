@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="tiles-wrap">
     <div class="tiles">
       <tile-item
         v-for="(item, index) in data" :key="getKey(index)"
@@ -13,13 +13,25 @@
     <div v-if="showLoader" class="tiles-loader">
       <loader />
     </div>
+
+    <transition name="fade">
+      <div
+        v-if="isToTopVisible"
+        class="tiles-to-top"
+        @click="scrollToTop"
+      >
+        <toTop />
+      </div>
+    </transition>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import TileItem from './item.vue'
 import storage from '@/helpers/storage'
 import loader from '@/assets/svg/loader.svg'
+import toTop from '@/assets/svg/totop.svg'
 
 export default {
   name: 'BreedsTiles',
@@ -49,12 +61,18 @@ export default {
   },
   components: {
     TileItem,
-    loader
+    loader,
+    toTop
   },
   data () {
     return {
       likedTiles: []
     }
+  },
+  computed: {
+    ...mapState({
+      isToTopVisible: state => state.isToTopVisible
+    })
   },
   created () {
     if (this.allItemsLiked) {
@@ -80,6 +98,9 @@ export default {
     },
     getKey (index) {
       return Date.now() * index
+    },
+    scrollToTop () {
+      window.scrollTo(0, 0)
     }
   }
 }
@@ -87,6 +108,10 @@ export default {
 
 <style lang="scss" scoped>
 .tiles {
+  &-wrap {
+    position: relative;
+  }
+
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(3, 1fr);
@@ -94,16 +119,26 @@ export default {
   row-gap: 30px;
   padding: 0 60px 200px 60px;
   color: #FFFFFF;
-}
 
-.tiles-loader {
-  padding: 80px;
-  text-align: center;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
+  &-loader {
+    padding: 80px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+  }
+
+  &-to-top {
+    position: fixed;
+    z-index: 1;
+    cursor: pointer;
+    right: 60px;
+    bottom: 5%;
+    width: 55px;
+    height: 55px;
+  }
 }
 
 @media (max-width:1080px) {

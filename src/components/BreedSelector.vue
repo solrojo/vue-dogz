@@ -249,4 +249,27 @@ export default {
     margin-left: 8px;
   }
 }
+
+@media (max-width:1080px) {
+  .selector {
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+}
+
+@media (max-width: 800px) {
+  .selector {
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    &-menu {
+      display: block;
+    }
+
+    &-dropdown {
+      margin-bottom: 20px;
+    }
+  }
+}
 </style>

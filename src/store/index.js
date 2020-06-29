@@ -9,11 +9,15 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   strict: process.env.NODE_ENV !== 'production',
   state: {
+    isToTopVisible: false,
     scrollAtBottom: false
   },
   mutations: {
     setScrollAtBottom (state, payload) {
       state.scrollAtBottom = payload
+    },
+    showToTop (state, payload) {
+      state.isToTopVisible = payload
     }
   },
   modules: {

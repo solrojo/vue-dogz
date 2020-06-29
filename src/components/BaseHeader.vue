@@ -28,7 +28,6 @@ export default {
 
 <style lang="scss" scoped>
 .nav {
-  display: block;
   background: #151419;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.55);
   font-style: normal;
@@ -69,6 +68,33 @@ export default {
       & .unliked {
         fill: #fff;
       }
+    }
+  }
+}
+
+@media (max-width:1080px) {
+  .nav {
+    padding-left: 30px;
+    padding-right: 30px;
+
+    &-link {
+      margin-top: 30px;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  .nav {
+    display: block;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    &-header {
+      display: block;
+    }
+
+    &-link {
+      margin-top: 10px;
     }
   }
 }

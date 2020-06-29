@@ -6,12 +6,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import BaseHeader from '@/components/BaseHeader.vue'
 
 export default {
   name: 'App',
   components: {
     BaseHeader
+  },
+  computed: {
+    ...mapState({
+      isToTopVisible: state => state.isToTopVisible
+    })
   },
   created () {
     window.addEventListener('scroll', this.onScroll)
@@ -21,11 +27,15 @@ export default {
   },
   methods: {
     onScroll () {
-      const limit = window.innerHeight + window.scrollY + 100
-      if (limit < document.body.offsetHeight) {
-        return
+      if (!this.isToTopVisible && (window.scrollY >= window.innerHeight / 2)) {
+        this.$store.commit('showToTop', true)
+      } else if (window.scrollY === 0) {
+        this.$store.commit('showToTop', false)
       }
-      this.$store.commit('setScrollAtBottom', true)
+
+      if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        this.$store.commit('setScrollAtBottom', true)
+      }
     }
   }
 }

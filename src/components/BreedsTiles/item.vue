@@ -83,6 +83,7 @@ export default {
   justify-content: space-between;
   cursor: pointer;
   height: 290px;
+  min-height: 290px;
   height: calc(100vh / 3);
 
   &--banner {
@@ -90,12 +91,12 @@ export default {
     padding: 35px 50px 50px 35px;
     background-position: center center;
     font-size: 30px;
-    height: 513px;
+    height: 520px;
     height: calc(100vw / 2);
   }
 
   &:before {
-    content: ' ';
+    content: " ";
     position: absolute;
     top: 0;
     left: 0;
@@ -118,6 +119,12 @@ export default {
   }
 }
 
+@media (min-width:1080px) {
+  .tile--banner {
+    max-height: 520px;
+  }
+}
+
 @media (max-width:1080px) {
   .tile {
     height: calc(100vh / 2);
@@ -134,5 +141,4 @@ export default {
     font-size: 25px;
   }
 }
-
 </style>

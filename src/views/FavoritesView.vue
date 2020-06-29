@@ -37,4 +37,10 @@ export default {
 .favorites {
   padding-top: 122px;
 }
+
+@media (max-width: 800px) {
+  .favorites {
+    padding-top: 30px;
+  }
+}
 </style>
