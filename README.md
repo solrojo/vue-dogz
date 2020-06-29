@@ -1,5 +1,7 @@
 # dogz
 
+See [demo](https://vue-dogz.web.app/)
+
 ## Project setup
 ```
 npm install
