@@ -49,8 +49,10 @@ export default {
     color: #626262;
     text-decoration: none;
     display: inline-flex;
+    align-self: center;
 
     &__icon {
+      display: inline-block;
       width: 16px;
       height: 14px;
       margin: 2px 0 0 10px;

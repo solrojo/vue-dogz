@@ -145,7 +145,9 @@ export default {
     margin-right: 20px;
 
     &__icon {
-      margin: -2px 0 0 10px;
+      align-self: center;
+      display: inline-flex;
+      padding-left: 10px;
       box-sizing: border-box;
     }
 
