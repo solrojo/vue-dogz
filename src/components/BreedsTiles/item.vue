@@ -3,8 +3,10 @@
     class="tile"
     :class="{'tile--banner': isBanner}"
     @click.stop="onClick"
-    :style="style"
   >
+    <div class="tile__blur" :style="style" />
+    <div class="tile__image" :style="style" />
+
     <div class="tile__like">
       <like :fill="fill" />
     </div>
@@ -76,9 +78,6 @@ export default {
   box-sizing: border-box;
   justify-self: stretch;
   overflow: hidden;
-  background-repeat: no-repeat;
-  background-position: center top;
-  background-size: cover;
   display: flex;
   justify-content: space-between;
   cursor: pointer;
@@ -89,10 +88,33 @@ export default {
   &--banner {
     grid-column: 1 / -1;
     padding: 35px 50px 50px 35px;
-    background-position: 0% 0%;
     font-size: 30px;
     height: 520px;
     height: calc(100vw / 2);
+  }
+
+  &__blur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(20px);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0.5;
+  }
+
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
   }
 
   &:before {
@@ -107,15 +129,18 @@ export default {
   }
 
   &__like {
+    position: relative;
     width: 29px;
     height: 26px;
   }
 
   &__title {
+    position: relative;
     align-self: flex-end;
     z-index: 1;
     text-align: right;
     word-break: break-word;
+    text-shadow: 1px 1px 0 #000000;
   }
 }
 
